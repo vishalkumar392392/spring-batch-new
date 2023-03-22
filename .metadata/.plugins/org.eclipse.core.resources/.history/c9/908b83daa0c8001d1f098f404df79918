@@ -1,0 +1,5 @@
+package com.vishal.spring.batch.config;
+
+public class SampleJob {
+
+}

@@ -1,0 +1,18 @@
+package com.vishal.spring.batch;
+
+import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.stereotype.Component;
+
+@SpringBootApplication
+@EnableBatchProcessing
+@ComponentScan("com.vishal.spring.batch.config")
+public class SpringBatchGettingStartedApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(SpringBatchGettingStartedApplication.class, args);
+	}
+
+}
