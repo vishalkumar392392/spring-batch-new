@@ -1,5 +1,0 @@
-package com.vishal.spring.batch.reader;
-
-public class FirstItemReader {
-
-}

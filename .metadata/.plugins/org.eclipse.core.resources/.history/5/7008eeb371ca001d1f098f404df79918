@@ -1,9 +1,0 @@
-package com.vishal.spring.batch;
-
-import org.springframework.batch.item.ItemWriter;
-import org.springframework.stereotype.Component;
-
-@Component
-public class FirstItemWriter implements ItemWriter<lONG> {
-
-}
