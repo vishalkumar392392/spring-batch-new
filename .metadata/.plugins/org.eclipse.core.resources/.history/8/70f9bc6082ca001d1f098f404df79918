@@ -1,0 +1,5 @@
+package com.vishal.spring.batch.service;
+
+public class ChuckJobSchedular {
+
+}

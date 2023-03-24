@@ -1,0 +1,9 @@
+package com.vishal.spring.batch.processor;
+
+import org.springframework.batch.item.ItemProcessor;
+import org.springframework.stereotype.Component;
+
+@Component
+public class FirstItemprocessor implements ItemProcessor<Integer, Long> {
+
+}
