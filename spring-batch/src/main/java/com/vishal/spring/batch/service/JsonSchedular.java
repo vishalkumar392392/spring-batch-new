@@ -17,22 +17,25 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ChuckJobSchedular {
+public class JsonSchedular {
 
 	@Autowired
 	private JobLauncher jobLauncher;
-
-	@Qualifier("getJob")
+	
+	@Qualifier("jsonJob")
 	@Autowired
-	private Job chuckJob;
-
-//	@Scheduled(cron = "0 0/1 * 1/1 * ?")
-	public void jobStarter() throws JobExecutionAlreadyRunningException, JobRestartException,
-			JobInstanceAlreadyCompleteException, JobParametersInvalidException {
-
+	private Job job;
+	
+	@Scheduled(cron = "*/10 * * * * *")
+	public void startJsonJob() throws JobExecutionAlreadyRunningException, JobRestartException, JobInstanceAlreadyCompleteException, JobParametersInvalidException {
+		
+		
 		Map<String, JobParameter> params = new HashMap<>();
+		
 		params.put("currentTime", new JobParameter(System.currentTimeMillis()));
+		
 		JobParameters jobParameters = new JobParameters(params);
-		jobLauncher.run(chuckJob, jobParameters);
+		
+		jobLauncher.run(job, jobParameters);
 	}
 }

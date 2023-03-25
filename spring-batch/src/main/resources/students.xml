@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<students>
+	<student>
+		<id>1</id>
+		<firstName>vishal</firstName>
+		<lastName>palla</lastName>
+		<email>vishal@gmail.com</email>
+	</student>
+	<student>
+		<id>2</id>
+		<firstName>vikas</firstName>
+		<lastName>palla</lastName>
+		<email>vikas@gmail.com</email>
+	</student><student>
+		<id>3</id>
+		<firstName>ajith</firstName>
+		<lastName>palla</lastName>
+		<email>ajith@gmail.com</email>
+	</student><student>
+		<id>4</id>
+		<firstName>susmitha</firstName>
+		<lastName>palla</lastName>
+		<email>susmitha@gmail.com</email>
+	</student><student>
+		<id>5</id>
+		<firstName>manikanta</firstName>
+		<lastName>palla</lastName>
+		<email>manikanta@gmail.com</email>
+	</student><student>
+		<id>6</id>
+		<firstName>chinnari</firstName>
+		<lastName>palla</lastName>
+		<email>chinnari@gmail.com</email>
+	</student><student>
+		<id>7</id>
+		<firstName>kavya</firstName>
+		<lastName>palla</lastName>
+		<email>kavya@gmail.com</email>
+	</student><student>
+		<id>8</id>
+		<firstName>sai</firstName>
+		<lastName>palla</lastName>
+		<email>sai@gmail.com</email>
+	</student>
+</students>

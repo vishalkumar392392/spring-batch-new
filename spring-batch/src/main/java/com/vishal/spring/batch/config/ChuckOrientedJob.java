@@ -37,11 +37,7 @@ public class ChuckOrientedJob {
 	}
 
 	private Step firstChuckStep() {
-		return stepBuilderFactory.get("First Chunk Step")
-								 .<Integer, Long>chunk(3)
-								 .reader(firstItemReader)
-								 .processor(firstItemprocessor)
-								 .writer(firstItemWriter)
-								 .build();
+		return stepBuilderFactory.get("First Chunk Step").<Integer, Long>chunk(3).reader(firstItemReader)
+				.processor(firstItemprocessor).writer(firstItemWriter).build();
 	}
 }
