@@ -26,7 +26,7 @@ public class JsonSchedular {
 	@Autowired
 	private Job job;
 	
-	@Scheduled(cron = "*/10 * * * * *")
+//	@Scheduled(cron = "*/10 * * * * *")
 	public void startJsonJob() throws JobExecutionAlreadyRunningException, JobRestartException, JobInstanceAlreadyCompleteException, JobParametersInvalidException {
 		
 		

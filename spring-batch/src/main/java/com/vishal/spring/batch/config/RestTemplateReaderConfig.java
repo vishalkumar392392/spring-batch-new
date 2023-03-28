@@ -5,6 +5,7 @@ import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
 import org.springframework.batch.item.adapter.ItemReaderAdapter;
+import org.springframework.batch.item.adapter.ItemWriterAdapter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -36,7 +37,7 @@ public class RestTemplateReaderConfig {
 
 	private Step restTemplateStep() {
 		return stepBuilderFactory.get("restTemplateStep").<StudentJson, StudentJson>chunk(3).reader(itemReaderAdapter())
-				.writer(jsonItemWriter).build();
+				.writer(itemWriterAdapter()).build();
 	}
 
 	private ItemReaderAdapter<StudentJson> itemReaderAdapter() {
@@ -46,6 +47,15 @@ public class RestTemplateReaderConfig {
 		itemReaderAdapter.setTargetMethod("getStudent");
 
 		return itemReaderAdapter;
+	}
+
+	private ItemWriterAdapter<StudentJson> itemWriterAdapter() {
+
+		ItemWriterAdapter<StudentJson> itemWriterAdapter = new ItemWriterAdapter<StudentJson>();
+		itemWriterAdapter.setTargetObject(studentService);
+		itemWriterAdapter.setTargetMethod("studentResponse");
+
+		return itemWriterAdapter;
 	}
 
 }

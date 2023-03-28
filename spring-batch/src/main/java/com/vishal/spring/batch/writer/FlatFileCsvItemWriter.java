@@ -13,7 +13,7 @@ public class FlatFileCsvItemWriter implements ItemWriter<StudentCSV> {
 	@Override
 	public void write(List<? extends StudentCSV> items) throws Exception {
 
-		System.out.println("Inside Item Writer");
+		System.out.println("Inside FlatFileCsvItemWriter");
 
 		items.stream().forEach(System.out::println);
 

@@ -4,7 +4,9 @@ import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
+import org.springframework.batch.item.json.JacksonJsonObjectMarshaller;
 import org.springframework.batch.item.json.JacksonJsonObjectReader;
+import org.springframework.batch.item.json.JsonFileItemWriter;
 import org.springframework.batch.item.json.JsonItemReader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -34,20 +36,27 @@ public class JsonItemReaderConfig {
 
 	private Step jsonStep() {
 		return stepBuilderFactory.get("jsonStep").<StudentJson, StudentJson>chunk(3).reader(jsonItemReader())
-				.writer(jsonItemWriter).build();
+				.writer(jsonFileItemWriter()).build();
 	}
 
 	private JsonItemReader<StudentJson> jsonItemReader() {
 
 		JsonItemReader<StudentJson> jsonItemReader = new JsonItemReader<>();
 		jsonItemReader.setResource(new ClassPathResource("students.json"));
-		
+
 		jsonItemReader.setJsonObjectReader(new JacksonJsonObjectReader<>(StudentJson.class));
-		
+
 //		jsonItemReader.setCurrentItemCount(2); //starts picking the 3rd element. 
 //		jsonItemReader.setMaxItemCount(8); // Total it picks only 8 elements
-		
+
 		return jsonItemReader;
+	}
+
+	public JsonFileItemWriter<StudentJson> jsonFileItemWriter() {
+		JsonFileItemWriter<StudentJson> jsonFileItemWriter = new JsonFileItemWriter<StudentJson>(
+				new ClassPathResource("json.json"), new JacksonJsonObjectMarshaller<StudentJson>());
+
+		return jsonFileItemWriter;
 	}
 
 }

@@ -17,23 +17,22 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 @Service
-public class FlatFileCsvSchedular {
+public class RestTemplateService {
 	
 	@Autowired
 	private JobLauncher jobLauncher;
-
-	@Qualifier("csvJob")
+	
+	@Qualifier("restTemplateJob")
 	@Autowired
-	private Job csvJob;
-
+	private Job job;
+	
 //	@Scheduled(cron = "*/10 * * * * *")
-	public void jobStarter() throws JobExecutionAlreadyRunningException, JobRestartException,
-			JobInstanceAlreadyCompleteException, JobParametersInvalidException {
-
+	public void startJdbcJob() throws JobExecutionAlreadyRunningException, JobRestartException, JobInstanceAlreadyCompleteException, JobParametersInvalidException {
+		
 		Map<String, JobParameter> params = new HashMap<>();
 		params.put("currentTime", new JobParameter(System.currentTimeMillis()));
 		JobParameters jobParameters = new JobParameters(params);
-		jobLauncher.run(csvJob, jobParameters);
+		jobLauncher.run(job, jobParameters);
 	}
 
 }

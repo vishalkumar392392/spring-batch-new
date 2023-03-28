@@ -12,12 +12,15 @@ import com.vishal.spring.batch.modal.StudentJson;
 public class StudentService {
 
 	List<StudentJson> list = null;
+	int incrementor = 0;
 
 	public List<StudentJson> restCall() {
 
+		System.out.println("restCall()");
+
 		RestTemplate restTemplate = new RestTemplate();
 
-		StudentJson[] students = restTemplate.getForObject("http://localhost:8081/students", StudentJson[].class);
+		StudentJson[] students = restTemplate.getForObject("http://localhost:8080/students", StudentJson[].class);
 
 		list = new ArrayList<>();
 
@@ -30,16 +33,22 @@ public class StudentService {
 
 	public StudentJson getStudent() {
 
-		if (list == null) {
+		if (incrementor == 0 && list == null) {
 			restCall();
 		}
-
-		if (list != null && !list.isEmpty()) {
-			return list.remove(0);
+		if (list != null && incrementor < list.size()) {
+			return list.get(incrementor++);
 		}
+		incrementor = 0;
 
 		return null;
 
+	}
+
+	public StudentJson studentResponse(StudentJson studentJson) {
+
+		RestTemplate restTemplate = new RestTemplate();
+		return restTemplate.postForObject("http://localhost:8080/students", studentJson, StudentJson.class);
 	}
 
 }
