@@ -87,7 +87,7 @@ public class JdbcItemReaderConfig {
 
 		JdbcBatchItemWriter<StudentJDBC> jdbcBatchItemWriter = new JdbcBatchItemWriter<StudentJDBC>();
 		jdbcBatchItemWriter.setDataSource(universityDataSource);
-		jdbcBatchItemWriter.setSql("insert into student(firstName,lastName,email) values(:firstName,:lastName,:email)");
+		jdbcBatchItemWriter.setSql("insert into student_old(firstName,lastName,email) values(:firstName,:lastName,:email)");
 
 		jdbcBatchItemWriter
 				.setItemSqlParameterSourceProvider(new BeanPropertyItemSqlParameterSourceProvider<StudentJDBC>());
