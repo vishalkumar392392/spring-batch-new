@@ -12,7 +12,7 @@ public class JdbcItemProcessor implements ItemProcessor<StudentJDBC, StudentJDBC
 	public StudentJDBC process(StudentJDBC item) throws Exception {
 		// We intentionally made firstName as null for a record in database
 		// We are doing item.getFirstName().length() to see whether our faultTolarence is working or not
-		System.out.println(item.getFirstName().length());
+		item.getFirstName().length();
 		return item;
 	}
 
