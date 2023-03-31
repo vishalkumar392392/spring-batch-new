@@ -1,4 +1,4 @@
-package com.spring.batch.migration.databasemigration.pg.dto;
+package com.spring.batch.migration.databasemigration.mysql.dto;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -9,8 +9,8 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "student")
-public class StudentDTO {
-
+public class StudentMysqlDTO {
+	
 	@Id
 	private Integer id;
 	@Column(name = "first_name")

@@ -9,7 +9,7 @@ import com.spring.batch.migration.databasemigration.mysql.dto.StudentDto;
 
 public interface StudentRepository extends JpaRepository<StudentDto, Integer> {
 
-	@Query(value = "select * from student", nativeQuery = true)
+	@Query(value = "select * from student_old", nativeQuery = true)
 	List<StudentDto> getAllStudents();
 
 }

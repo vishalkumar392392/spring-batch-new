@@ -34,7 +34,7 @@ public class MySqlDatabaseConfig {
 	private String driverClassName;
 
 	@Primary
-	@Bean(name = "mysqlDataSource")
+	@Bean(name = "dataSource")
 	public DataSource dataSource() {
 		DataSourceBuilder<?> create = DataSourceBuilder.create();
 		create.username(username);
@@ -47,16 +47,26 @@ public class MySqlDatabaseConfig {
 	@Primary
 	@Bean(name = "mysqlEntityManagerFactory")
 	public LocalContainerEntityManagerFactoryBean mysqlEntityManagerFactory(EntityManagerFactoryBuilder builder,
-			@Qualifier("mysqlDataSource") DataSource dataSource) {
+			@Qualifier("dataSource") DataSource dataSource) {
 		return builder.dataSource(dataSource).packages("com.spring.batch.migration.databasemigration.mysql.dto")
 				.persistenceUnit("mysql").build();
 	}
 
 	@Primary
-	@Bean(name = "mysqlTransactionManager")
+	@Bean(name = "transactionManager")
 	public PlatformTransactionManager mysqlTransactionManager(
 			@Qualifier("mysqlEntityManagerFactory") EntityManagerFactory entityManagerFactory) {
 		return new JpaTransactionManager(entityManagerFactory);
 	}
+
+	@Bean(name = "jpaTransactionManager")
+	public JpaTransactionManager jpaTransactionManager(EntityManagerFactoryBuilder builder) {
+		JpaTransactionManager jpaTransactionManager = new JpaTransactionManager();
+		jpaTransactionManager.setDataSource(dataSource());
+		jpaTransactionManager.setEntityManagerFactory(
+				mysqlEntityManagerFactory(builder, dataSource()).getNativeEntityManagerFactory());
+		return jpaTransactionManager;
+	}
+	
 
 }
